@@ -1,0 +1,56 @@
+Week 1: Foundations — Cleaning and Exploring the Applicant Dataset¶
+
+Name: Muhammad Talha
+Project: NextGenLearners Applicant Dataset
+Objective: To explore, clean, standardize, and analyze applicant records using Python and Pandas.
+Tools: Jupyter, Python, Pandas.
+
+## Step_1: Initial Data Exploration
+  The original dataset contains 80 rows and 7 columns. The Applicant name has 2 missing value, Email column has 4 missing values, the University column has 3 missing values. 
+  There are 2 exact duplicate rows. The Application Date column is stored as text rather than a proper date datatype. Phone numbers have inconsistent formatting, 
+  and some domain names and application statuses use inconsistent capitalization or spelling. These findings establish the initial data quality  before cleaning.
+
+### Step 2: Handling Missing Values
+I checked missing values separately for each column. 2 applicant names were missing, Phone, Domain Applied were missing in the original dataset
+I removed the 4 records with missing email addresses because email is required for applicant follow-up. I filled the 4 missing University values with "Not Specified" 
+to preserve the remaining applicant information. I used "Under Review" for any missing status values, status values were missing in this dataset. These decisions avoid unnecessary data loss while addressing the missing information.
+
+## Step 3:  what I Found
+I found 2 Duplicate rows and remove them using drop_duplicate().  Email is a more reliable identifier than a person's 
+name because different applicants can share the same name. I kept the first occurrence of any repeated email address 
+to avoid counting the same applicant multiple times.
+
+## Step 4: Text Standardization
+I removed unnecessary whitespace and standardized applicant names, email addresses, and application statuses. I created a mapping dictionary to convert different domain spellings into five consistent categories.
+I also correct known university abbreviations where incorrect spelling. Finally, I checked the unique domain and status values to confirm that inconsistent capitalization and spelling no longer create separate categories.
+This improves the reliability of grouping, counting, and analyzing applicant records.
+
+## Data Quality Summary 
+    Starting dataset:   
+    80 rows
+    7 columns 
+ 
+Issues found:- 
+  - 4 missing values in Email
+  - 3 in University, 
+  - 2 in Status
+  - 2 exact duplicate rows
+  - 1 additional duplicate applications  
+  - Inconsistent capitalization and spelling in domain and status values.
+  - Extra whitespace in some text fields.
+  - Application dates stored as text.
+  - Phone numbers contained with inconsistent spaces and hyphens.
+
+Actions taken:- 
+  - Dropped 4 rows with missing email address because email is required
+  - Filled missing University with "Not Specified
+  - Filled missing Status with "Under Review" (default for unprocessed applications) 
+  - Removed 2 duplicate rows total
+  - Standardized all Domain Applied values into 5 consistent categories 
+  - Converted Application Date to proper datetime format
+  - Cleaned Phone number formatting for consistency 
+ 
+Final dataset:-
+  - 72 rows,
+  - 7 columns, 
+  - No missing values in critical fields, no duplicates, consistent formatting throughout.
